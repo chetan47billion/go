@@ -6,14 +6,20 @@ FROM ubuntu:16.04
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 RUN apt-get update \
-        && apt-get install -y unzip git libgmime-2.6-dev wget vim libmagic-dev redis-tools golang curl python-software-properties software-properties-common \
-           python-dev libboost-python-dev libgsf-1-dev
+        && apt-get install -y unzip git wget vim curl
 
 RUN mkdir /cavo2.0
-#ENV GOROOT /usr/bin/go
-#ENV PATH $GOROOT/bin:$PATH
+
+ENV GO_VERSION 1.7.6
+
+ENV GOROOT /usr/local/go
 ENV GOPATH /cavo2.0/go
 ENV GOBIN /cavo2.0
+
+
+RUN wget https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
+
 
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
