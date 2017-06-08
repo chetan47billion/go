@@ -1,13 +1,14 @@
 #!/bin/bash
-cd /cavo2.0/go/src/github.com/cavo/cmd
-echo #########################
-echo $GOPATH
-echo $GOBIN
+cd /cavo2.0/go/src/github.com/cavo
 
-go version
-
+echo $0
 echo $1
-echo #########################
-go build $1
+echo $2
+echo $3
+echo $4
 
-#tail -f /etc/issue
+go get "github.com/jprichardson/readline-go"
+echo #########################
+
+go build -v -o /cavo2.0/$2 $1
+

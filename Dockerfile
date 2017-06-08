@@ -1,5 +1,5 @@
-#FROM cavo2/base-images:4.00
-FROM ubuntu:16.04
+FROM cavo2/base-images:4.00
+#FROM ubuntu:16.04
 
 
 # Replace shell with bash so we can source files
@@ -14,11 +14,12 @@ ENV GO_VERSION 1.7.6
 
 ENV GOROOT /usr/local/go
 ENV GOPATH /cavo2.0/go
-ENV GOBIN /cavo2.0
+ENV GOBIN /cavo2.0/bin
+ENV PATH /usr/local/go/bin:$GOPATH/bin:$PATH
 
 
-RUN wget https://storage.googleapis.com/golang/go$GO_VERSION.linux-amd64.tar.gz
-RUN tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
+RUN wget https://storage.googleapis.com/golang/go1.7.6.linux-amd64.tar.gz
+RUN tar -C /usr/local -xzf go1.7.6.linux-amd64.tar.gz
 
 
 ADD start.sh /start.sh
