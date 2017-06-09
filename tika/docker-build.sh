@@ -2,11 +2,17 @@ echo ######################
 echo # BUILD DOCKER IMAGE #
 echo ######################
 
-docker build -t $1 .
+docker build --no-cache -t cavo2/tika:$1 .
+
+echo ####################
+echo # LOGIN DOCKER HUB #
+echo ####################
+
+docker login -u cavo2 
 
 echo ###################################
 echo # PUSH DOCKER IMAGE ON DOCKER HUB #
 echo ###################################
 
-docker push $1
+docker push cavo2/tika:$1
 
